@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Focus Tracking</title>
+</head>
+<body>
+
+<h2>Smart Focus Cam</h2>
+
+<img src="/video" id="video" width="640" height="480">
+
+<script>
+const video = document.getElementById("video");
+
+video.addEventListener("click", function(e) {
+    const rect = video.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    fetch("/select", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({x: x, y: y})
+    });
+});
+</script>
+
+</body>
+</html>
